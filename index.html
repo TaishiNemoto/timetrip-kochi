@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タイムトリップ高知</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+    <!-- 自作スタイル -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>🎬 タイムトリップ高知</h1>
+            <p>高知ゆかりのアニメ・映画・ドラマを年代で楽しむ文化体験</p>
+        </div>
+
+        <div class="controls">
+            <div class="year-control">
+                <span class="year-display" id="yearDisplay">2020</span>
+                <input type="range" id="yearSlider" class="year-slider" min="1965" max="2025" value="2020">
+                <div class="play-controls">
+                    <button id="playBtn" class="play-btn play">▶ 再生</button>
+                    <button id="stopBtn" class="play-btn stop" disabled>⏸ 停止</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="map" class="map-container"></div>
+    </div>
+
+    <!-- モーダルウィンドウ -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeModal">&times;</span>
+                <h2 id="modalTitle">作品タイトル</h2>
+                <span class="year-badge" id="modalYear">2020年</span>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" class="content-image" src="" alt="作品画像">
+                <div id="modalDescription" class="content-description">
+                    作品の詳細説明がここに表示されます。
+                </div>
+                <a id="modalNavLink" class="nav-link" href="#" target="_blank">
+                    📍 Googleマップで経路を確認
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <!-- 自作スクリプト -->
+    <script src="script.js"></script>
+</body>
+</html>
