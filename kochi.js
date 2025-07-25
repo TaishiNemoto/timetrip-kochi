@@ -1,0 +1,911 @@
+// script.js
+
+// 文化作品データベース
+const culturalWorks = [
+ {
+    "year": 2021,
+    "lat": 33.5677,
+    "lng": 133.52557,
+    "title": "浅尾沈下橋（あそおのちんかばし）",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://niyodoblue.jp/img_data/spot-153_1.jpg?20240531100836"
+  },
+  {
+    "year": 2021,
+    "lat": 33.6807,
+    "lng": 133.20517,
+    "title": "安居渓谷 水晶淵（やすいけいこく すいしょうぶち）",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://www.shikokubank.co.jp/room/assets/suishobuchi_08.jpg"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5553,
+    "lng": 133.53718,
+    "title": "鏡川",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoDbeWHMgMDp-6JEFiTmh06VXOMEZEBsj20g&s"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5605,
+    "lng": 133.53996,
+    "title": "帯屋町商店街",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://kochike.jp/wp-content/uploads/2024/11/R0010679_02.jpg"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5731,
+    "lng": 133.35461,
+    "title": "西の谷第二バス停",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKer8JC4171KpmccDiYqmodwULrVLoUNbVGw&s"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5667,
+    "lng": 133.54304,
+    "title": "JR高知駅",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://kochi-tabi.jp/img/spot_16389/1400_1726121821395.jpg"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5596,
+    "lng": 133.33724,
+    "title": "日高村立能津小学校（ひだかそんりつのうづしょうがっこう）",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://www.kochinet.ed.jp/nozu-e/IMG_6333%202_4001.jpg"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5476,
+    "lng": 133.43020,
+    "title": "JR伊野駅",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://tetsudo-ch.com/wp-content/uploads/2022/11/0123-e1674657264980.jpg"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5483,
+    "lng": 133.43023,
+    "title": "ローソン伊野駅前店",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://stat.ameba.jp/user_images/20210925/17/t44uemura/3e/fb/j/o2048153615006371963.jpg"
+  },
+  {
+    "year": 2021,
+    "lat": 33.5485,
+    "lng": 133.41550,
+    "title": "波川公園（はかわこうえん）",
+    "desc": "映画『竜とそばかすの姫』の聖地",
+    "img": "https://www.atpress.ne.jp/releases/282289/LL_img_282289_2.png?format=webp"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5554,
+    "lng": 133.53740,
+    "title": "天神大橋",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://lh5.googleusercontent.com/proxy/HzASP_TXWq-C2bUwqFtJw_5IeU8q_eCBB6YuBMfzsRVZ9JtccJoyRuoRgULGVIET3bMUVhxelqbq6DsLggU2a9zlJEfpFNi9"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5612,
+    "lng": 133.54265,
+    "title": "帯屋町アーケード街",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://tokyosanpopo.com/wp-content/uploads/IMG_3971-3-1024x683.jpg"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5617,
+    "lng": 133.53711,
+    "title": "追手前高校",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://www.minkou.jp/images/school_img/1768/kouchioutemaekoukou.jpg"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5462,
+    "lng": 133.57560,
+    "title": "護国神社付近",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://lh4.googleusercontent.com/proxy/ycZV21MIIK6RV551OmmM08lTkp3R11SKnd7k6yWT-4iC-YSRC_JOf-8MYUk1CTe58v4y53lLkNnEGUB4oOw28HVYXB1L_vfF"
+  },
+  {
+    "year": 1993,
+    "lat": 33.3345,
+    "lng": 133.24411,
+    "title": "久礼の港",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://cdn-ak.f.st-hatena.com/images/fotolife/f/fujisyuu01/20190815/20190815143354.jpg"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5608,
+    "lng": 133.53189,
+    "title": "高知城",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://seichi-img.s3.ap-northeast-1.amazonaws.com/uploads/comment_image/file/1805/IMG_6318.JPG"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5477,
+    "lng": 133.67485,
+    "title": "龍馬空港",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://article-image-ix.nikkei.com/https%3A%2F%2Fimgix-proxy.n8s.jp%2FDSXZQO5342824010092024000000-1.jpg?ixlib=js-3.8.0&w=638&h=398&auto=format%2Ccompress&fit=crop&bg=FFFFFF&s=31a76be9b4ca1592ec08fc7c8e79352d"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5497,
+    "lng": 133.67795,
+    "title": "桂浜",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://img.bigs.jp/api/attachment/1c7495ce-3298-11ee-b4c2-0242ac120005_45868-02"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5605,
+    "lng": 133.53778,
+    "title": "金高堂書店",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://cdn.amebaowndme.com/madrid-prd/madrid-web/images/sites/30597/0394af35d3b2b363c0510116d7c5efcb_dce0f4a4554381645031cd1319e976d4.jpg?width=564"
+  },
+  {
+    "year": 1993,
+    "lat": 33.5600,
+    "lng": 133.54333,
+    "title": "はりまや橋",
+    "desc": "映画『海が聞こえる』の聖地",
+    "img": "https://www.city.kochi.kochi.jp/uploaded/image/30816.png"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4990,
+    "lng": 133.28926,
+    "title": "酒蔵の道",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://img.tabiiro.jp/plans.tabiiro.jp/plans/images/spots/1686140843-%E9%85%92%E8%94%B5%E3%81%AE%E9%81%93.png"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4974,
+    "lng": 133.28835,
+    "title": "青源寺",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://images.www.kochinews.co.jp/media/article/642473/images/867d8657ee44cd700f739e830b4577ce972e3892.jpg?w=900"
+  },
+  {
+    "year": 2023,
+    "lat": 33.5034,
+    "lng": 133.30146,
+    "title": "金峰神社",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://kochike.jp/wp-content/uploads/2024/01/%E9%87%91%E5%B3%B0%E7%A5%9E%E7%A4%BE.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.5367,
+    "lng": 133.20490,
+    "title": "横倉山",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://shimanami.way-nifty.com/photos/uncategorized/20230813_131640.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.5486,
+    "lng": 133.27686,
+    "title": "仁淀川",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://image.co-trip.jp/content/14renewal_images_l/564212/main_image_20250307142352029.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4749,
+    "lng": 132.99505,
+    "title": "四国カルスト 天狗高原",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://represent-kochi.com/wp-content/uploads/2022/09/s-IMG_9777.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4914,
+    "lng": 133.93365,
+    "title": "伊尾木洞",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://s3.ap-northeast-1.amazonaws.com/triplog.icu/wp-content/uploads/2023/07/aya-230711-ic.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.5480,
+    "lng": 133.57982,
+    "title": "高知県立牧野植物園",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://img.shuminoengei.jp/w=1200,h=1200,a=0,ir=auto,f=webp:auto,u=0/org_img/jpg/img_cache_d_1086694_1_1685344697_jpg.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4927,
+    "lng": 133.29600,
+    "title": "佐川ナウマンカルスト",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://acafe.msc.sony.jp/application/resize/resizeimage.php?url=https%3A%2F%2Facafe.msc.sony.jp%2Fcontents%2F2038%2F20384057%2F1%2FI010187e00ec04b85288c6d9.jpg&mode=1&width=1020&height=720"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4907,
+    "lng": 133.94668,
+    "title": "東山森林公園",
+    "desc": "連続テレビ小説『らんまん』の聖地",
+    "img": "https://www.moricrew.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fdud96fhb42qs%2F460E4GpnuxNzJh4LsQeHTN%2F4415dca5d5ccabdc2c150663efae6490%2Fhigashiyamashinrin.png&w=3840&q=75"
+  },
+  {
+    "year": 2025,
+    "lat": 33.5315,
+    "lng": 133.79859,
+    "title": "琴ヶ浜(ことがはま)",
+    "desc": "連続テレビ小説『あんぱん』の聖地",
+    "img": "https://www.kankou-shimane.com/jp/wp-content/uploads/2020/03/4382-kotogahama-009.jpg"
+  },
+  {
+    "year": 2025,
+    "lat": 33.6526,
+    "lng": 133.75739,
+    "title": "物部川(ものべがわ)",
+    "desc": "連続テレビ小説『あんぱん』の聖地",
+    "img": "https://monobegawa.jp/images/slider1.png"
+  },
+  {
+    "year": 2007,
+    "lat": 33.5012,
+    "lng": 133.57452,
+    "title": "桂浜",
+    "desc": "小説『たいようのマキバオー』の聖地",
+    "img": "https://img.bigs.jp/api/attachment/1c7495ce-3298-11ee-b4c2-0242ac120005_45868-02"
+  },
+  {
+    "year": 2007,
+    "lat": 33.5047,
+    "lng": 133.53056,
+    "title": "高知競馬場",
+    "desc": "小説『たいようのマキバオー』の聖地",
+    "img": "https://image.co-trip.jp/content/book_contents/39000352_2510_3.jpg"
+  },
+  {
+    "year": 2016,
+    "lat": 33.3688,
+    "lng": 133.26459,
+    "title": "安和海岸(あわ)",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://thumb.photo-ac.com/c1/c1ca439788112cfa38eda7707d03f3da_t.jpeg"
+  },
+  {
+    "year": 2016,
+    "lat": 33.2124,
+    "lng": 133.13754,
+    "title": "窪川駅",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://train.skygrass.net/railway/jrs/st39/img/kubokawa3.jpg"
+  },
+  {
+    "year": 2016,
+    "lat": 33.5100,
+    "lng": 133.50220,
+    "title": "春野総合運動公園",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://i2.wp.com/www.kochi-haruno.org/wp-content/uploads/2020/05/%E9%99%B8%E4%B8%8A%EF%BC%88%E4%B8%BB%EF%BC%89-4-5.jpg?resize=750%2C505&ssl=1"
+  },
+  {
+    "year": 2016,
+    "lat": 33.5477,
+    "lng": 133.67458,
+    "title": "高知空港",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://article-image-ix.nikkei.com/https%3A%2F%2Fimgix-proxy.n8s.jp%2FDSXZQO5342824010092024000000-1.jpg?ixlib=js-3.8.0&w=638&h=398&auto=format%2Ccompress&fit=crop&bg=FFFFFF&s=31a76be9b4ca1592ec08fc7c8e79352d"
+  },
+  {
+    "year": 2016,
+    "lat": 33.3294,
+    "lng": 133.22748,
+    "title": "土佐久礼駅(とさくれ)",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://jice.homemate-research.com/pubuser1/pubuser_facility_img/2/2/6/46000000000000007622/0000016712/46000000000000007622_0000016712_1.jpg?f=400"
+  },
+  {
+    "year": 2016,
+    "lat": 33.3295,
+    "lng": 133.22473,
+    "title": "久礼中学校(とさくれ)",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://ageta-ar.com/wp-content/uploads/2020/11/%E4%B8%AD%E5%9C%9F%E4%BD%90%E7%94%BA%E7%AB%8B%E4%B9%85%E7%A4%BC%E4%B8%AD%E5%AD%A6%E6%A0%A101.jpg"
+  },
+  {
+    "year": 2016,
+    "lat": 33.3273,
+    "lng": 133.23689,
+    "title": "久礼港久礼防波堤灯台",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://lighthouse-japan.com/kochi/kurekokurebouhatei/image/kurekokurebouhatei_01.jpg"
+  },
+  {
+    "year": 2016,
+    "lat": 33.5492,
+    "lng": 133.67984,
+    "title": "桂浜",
+    "desc": "映画『ポッピンQ』の聖地",
+    "img": "https://ppap.kinto-jp.com/spots_images/5699-images/23685.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.5639,
+    "lng": 133.52644,
+    "title": "小津高校",
+    "desc": "アニメ『政宗くんのリベンジ』の聖地",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Kochi_Ozu_High_School_ac_%283%29.jpg"
+  },
+  {
+    "year": 1973,
+    "lat": 33.5609,
+    "lng": 133.53193,
+    "title": "高知城",
+    "desc": "映画『仮面ライダーV3対デストロン怪人』の聖地",
+    "img": "https://www.meihaku.jp/app/uploads/2023/01/bf2200f124f1ba6eddb4b34c87f464e3-20230127113020.jpg"
+  },
+  {
+    "year": 1980,
+    "lat": 33.5561,
+    "lng": 133.53283,
+    "title": "三翠園",
+    "desc": "小説『鬼龍院花子の生涯』の聖地",
+    "img": "https://pix10.agoda.net/hotelImages/295244/-1/22a61527974a8c55f7e6251373aebdd1.jpg?ce=0&s=414x232"
+  },
+  {
+    "year": 1980,
+    "lat": 33.5580,
+    "lng": 133.54824,
+    "title": "九反田地蔵尊",
+    "desc": "小説『鬼龍院花子の生涯』の聖地",
+    "img": "https://kochikurasi.com/wp-content/uploads/2022/11/IMG_4225-1-scaled.jpg"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5677,
+    "lng": 133.25616,
+    "title": "浅尾沈下橋",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://tabiiro.jp/lpimg/leisure/214737/main/img1.jpg"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5615,
+    "lng": 133.53729,
+    "title": "追手筋(日曜市)",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://www.city.kochi.kochi.jp/uploaded/image/27145.JPG"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5055,
+    "lng": 133.57332,
+    "title": "桂浜",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://kochidon.net/images/A00000309.jpg?1574919853"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5556,
+    "lng": 133.53486,
+    "title": "鏡川みどりの広場",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://jl-db.nfaj.go.jp/assets/images/202506/x/6ccde623c0adaf88493bf4c18d80013f.jpg"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5741,
+    "lng": 133.58191,
+    "title": "国分川",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://newsatcl-pctr.c.yimg.jp/dk/expert-image/tappy/article/01670199/image-1708086798907.jpeg?fill=1&fc=fff&exp=10800"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5291,
+    "lng": 133.62667,
+    "title": "黒潮ライン",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://www.8190.jp/bikelifelab/upimages/2019/10/kuroshio_pic_01_sp.jpg"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5757,
+    "lng": 133.06694,
+    "title": "吾川スカイパーク",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://sporu-kochi.com/wp/wp-content/uploads/2023/10/t-13-004-1.jpg"
+  },
+  {
+    "year": 2011,
+    "lat": 33.5485,
+    "lng": 133.43015,
+    "title": "伊野駅前電停",
+    "desc": "映画『県庁おもてなし課』の聖地",
+    "img": "https://cdn.4travel.jp/img/thumbnails/imk/tips_pict/17/46/82/650x450_17468258.jpg?updated_at=1598157013"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5675,
+    "lng": 133.60409,
+    "title": "高知中央高等学校",
+    "desc": "映画『桐島、部活やめるってよ』の聖地",
+    "img": "https://www.kochi-chuo.ed.jp/img/campus/facility/facility01.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5506,
+    "lng": 133.50168,
+    "title": "高知西高等学校",
+    "desc": "映画『桐島、部活やめるってよ』の聖地",
+    "img": "https://www.kochinet.ed.jp/nishi-h/mt/%E6%A0%A1%E8%88%8E%28%E5%A4%A7%E9%9A%8E%E6%AE%B5%29.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5588,
+    "lng": 133.54683,
+    "title": "学校法人すみれ学園 高知福祉専門学校",
+    "desc": "映画『桐島、部活やめるってよ』の聖地",
+    "img": "https://sumiregakuen.jp/themes/child@sumiregakuen/images/kochifukushi/img_facility01.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 42.1745,
+    "lng": 142.76311,
+    "title": "堺町バス停留所",
+    "desc": "映画『桐島、部活やめるってよ』の聖地",
+    "img": "https://jice.homemate-research.com/pubuser1/pubuser_facility_img/5/6/5/2700000000000076565/0000026570/2700000000000076565_0000026570_2.jpg?f=400"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5764,
+    "lng": 133.54341,
+    "title": "イオンモール高知",
+    "desc": "映画『桐島、部活やめるってよ』の聖地",
+    "img": "https://www.nikko-ltd.jp/wp/wp-content/uploads/2024/05/1211.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5618,
+    "lng": 133.52895,
+    "title": "城西公園",
+    "desc": "映画『桐島、部活やめるってよ』の聖地",
+    "img": "https://cool8.ciao.jp/j_park/wp-content/uploads/2013/05/ichou.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5429,
+    "lng": 133.49838,
+    "title": "ミスタードーナツフジグラン高知ショップ",
+    "desc": "映画『桐島、部活やめるってよ』の聖地",
+    "img": "https://the-fff.com/thefff-pics/10001788.jpg?v=102507"
+  },
+  {
+    "year": 1996,
+    "lat": 33.5407,
+    "lng": 133.48903,
+    "title": "清水第二小学校　(現在は朝倉第二小学校)",
+    "desc": "映画『絵の中のぼくの村』の聖地",
+    "img": "https://stat.ameba.jp/user_images/20230326/19/hiho-haiko/13/4e/j/o4608345615260984704.jpg?caw=800"
+  },
+  {
+    "year": 2003,
+    "lat": 32.7258,
+    "lng": 133.01936,
+    "title": "四国霊場第38番札所金剛福寺",
+    "desc": "映画『釣りバカ日誌14』の聖地",
+    "img": "https://www.city.tosashimizu.kochi.jp/fs/4/9/7/7/3/0/_/g01_kongofukuji_p06.jpg"
+  },
+  {
+    "year": 2003,
+    "lat": 32.7884,
+    "lng": 132.86736,
+    "title": "竜串",
+    "desc": "映画『釣りバカ日誌14』の聖地",
+    "img": "https://www.city.tosashimizu.kochi.jp/fs/3/4/3/4/_/g01_tatsukushibluetourism_p01.jpg"
+  },
+  {
+    "year": 2003,
+    "lat": 32.7725,
+    "lng": 133.11380,
+    "title": "松尾漁港 海老洞",
+    "desc": "映画『釣りバカ日誌14』の聖地",
+    "img": "https://eimons.jp/wp-content/uploads/2022/04/matsuogyoko_03.jpg"
+  },
+  {
+    "year": 2010,
+    "lat": 32.8818,
+    "lng": 132.70963,
+    "title": "栄喜漁港(さかき)",
+    "desc": "映画『パーマネント野ばら』の聖地",
+    "img": "https://w-lifelife.com/wp-content/uploads/2023/12/228e2c0ce8a417357ffd626aeff45f2d.jpg"
+  },
+  {
+    "year": 2008,
+    "lat": 33.6736,
+    "lng": 133.14146,
+    "title": "椿山",
+    "desc": "映画『私は貝になりたい』の聖地",
+    "img": "https://lh4.googleusercontent.com/proxy/1mrKmWr1Yb1P3uGrzHglvsrUwblWHmMQLV7w89bqYmR9_zLAorYD3iiUWuNPIZmCXnE3nAqpPcJMI_1Si7bcNI93a8fPMD0FrPxXmf0CYDqe"
+  },
+  {
+    "year": 2005,
+    "lat": 33.5048,
+    "lng": 133.53073,
+    "title": "高知競馬場",
+    "desc": "映画『ハルウララ』の聖地",
+    "img": "https://image.co-trip.jp/content/book_contents/39000352_2510_3.jpg"
+  },
+  {
+    "year": 2005,
+    "lat": 33.5609,
+    "lng": 133.54072,
+    "title": "帯屋町商店街",
+    "desc": "映画『ハルウララ』の聖地",
+    "img": "https://www.kojyanto.net/wphp/wp-content/uploads/2024/03/syoutengai004.jpg"
+  },
+  {
+    "year": 2005,
+    "lat": 33.5573,
+    "lng": 133.52795,
+    "title": "フローレス美容室",
+    "desc": "映画『ハルウララ』の聖地",
+    "img": "https://image.ekiten.jp/contribution/old/382/4254418/3821012_20190322111502.jpg?1to1_m"
+  },
+  {
+    "year": 2005,
+    "lat": 33.5445,
+    "lng": 133.57547,
+    "title": "長浜海岸",
+    "desc": "映画『ハルウララ』の聖地",
+    "img": "https://as1.ftcdn.net/jpg/01/00/03/34/1000_F_100033452_SHfZEQ0I7pT7rLWBB5VhINAgByycTkam.jpg"
+  },
+  {
+    "year": 2005,
+    "lat": 33.5468,
+    "lng": 133.57743,
+    "title": "竹林寺",
+    "desc": "映画『ハルウララ』の聖地",
+    "img": "https://shikoku-tourism.com/image/rendering/attraction_image/12629/keep/1200?v=210cbe6c08e8f102208d2e35e3fca8d4bc7362a1"
+  },
+  {
+    "year": 2024,
+    "lat": 33.5609,
+    "lng": 133.53194,
+    "title": "高知城",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://s3-ap-northeast-1.amazonaws.com/thegate/2023/02/01/12/26/07/Kochijo-castle-tenshu.jpg"
+  },
+  {
+    "year": 2024,
+    "lat": 33.5018,
+    "lng": 133.57401,
+    "title": "桂浜",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://tabiiro.jp/lpimg/leisure/214750/main/img3.jpg"
+  },
+  {
+    "year": 2024,
+    "lat": 33.4972,
+    "lng": 133.57408,
+    "title": "桂浜水族館",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://tabiiro.jp/lpimg/leisure/200398/main/img2.jpg"
+  },
+  {
+    "year": 2024,
+    "lat": 33.5615,
+    "lng": 133.53608,
+    "title": "追手筋",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://cdn.snsimg.carview.co.jp/minkara/userstorage/000/026/153/904/139a84303f.jpg?ct=0acbdb5c3d06"
+  },
+  {
+    "year": 2024,
+    "lat": 33.5480,
+    "lng": 133.57984,
+    "title": "高知県立牧野植物園",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://www.makino.or.jp/img_data/CIMG11_1.jpg?0"
+  },
+  {
+    "year": 2024,
+    "lat": 33.5601,
+    "lng": 133.54325,
+    "title": "はりまや橋",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://www.city.kochi.kochi.jp/uploaded/image/30816.png"
+  },
+  {
+    "year": 2024,
+    "lat": 33.5586,
+    "lng": 133.53209,
+    "title": "高知市役所",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://www.city.kochi.kochi.jp/uploaded/image/20430.jpg"
+  },
+  {
+    "year": 2024,
+    "lat": 33.5740,
+    "lng": 133.64782,
+    "title": "海洋堂スペースファクトリーなんこく",
+    "desc": "映画『特捜戦隊デカレンジャー20thファイヤーボールブースター』の聖地",
+    "img": "https://kochidon.net/images/A00001264.jpg?1627613958"
+  },
+  {
+    "year": 2012,
+    "lat": 33.0155,
+    "lng": 132.88595,
+    "title": "佐田沈下橋",
+    "desc": "ドラマ『遅咲きのヒマワリ　～ボクの人生、リニューアル～』の聖地",
+    "img": "https://ppap.kinto-jp.com/spots_images/1013-images/e81d5ab4-f1bb-4ada-b7ad-86dc4a5e08bd.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 33.0070,
+    "lng": 132.93101,
+    "title": "安並水車",
+    "desc": "ドラマ『遅咲きのヒマワリ　～ボクの人生、リニューアル～』の聖地",
+    "img": "https://www.city.shimanto.lg.jp/uploaded/image/3888.JPG"
+  },
+  {
+    "year": 2012,
+    "lat": 32.9937,
+    "lng": 132.93453,
+    "title": "一條神社",
+    "desc": "ドラマ『遅咲きのヒマワリ　～ボクの人生、リニューアル～』の聖地",
+    "img": "https://cdn.jalan.jp/jalan/img/4/kuchikomi/5684/KL/d817c_0005684302_1.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5585,
+    "lng": 133.53649,
+    "title": "天神橋商店街",
+    "desc": "ドラマ『遅咲きのヒマワリ　～ボクの人生、リニューアル～』の聖地",
+    "img": "https://kochike.jp/wp-content/uploads/2018/05/180519tenjin_thumb.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 32.9845,
+    "lng": 132.94439,
+    "title": "土佐くろしお鉄道中村駅",
+    "desc": "ドラマ『遅咲きのヒマワリ　～ボクの人生、リニューアル～』の聖地",
+    "img": "https://static.wixstatic.com/media/310f5f_00bbff24de214e37bf2fc7fefb2b120e~mv2.jpg/v1/fill/w_1138,h_640,q_90,enc_avif,quality_auto/310f5f_00bbff24de214e37bf2fc7fefb2b120e~mv2.jpg"
+  },
+  {
+    "year": 2012,
+    "lat": 33.5668,
+    "lng": 133.54308,
+    "title": "JR高知駅",
+    "desc": "ドラマ『遅咲きのヒマワリ　～ボクの人生、リニューアル～』の聖地",
+    "img": "https://photock.jp/photo/middle/photo0000-3701.jpg"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5609,
+    "lng": 133.53197,
+    "title": "高知城",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://www.kochi-bank.co.jp/uploads/2017/02/kochi_castle_yamauchi_20170217-1.jpg"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5501,
+    "lng": 133.67795,
+    "title": "桂浜",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://hotel-hikyounoyu.co.jp/wp-content/uploads/2021/06/AdobeStock_205435446-1024x640.jpeg"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5602,
+    "lng": 133.54249,
+    "title": "はりまや橋公園",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://kochi-tabi.jp/img/spot_468/1400_1650279380654.jpg"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5443,
+    "lng": 133.58615,
+    "title": "五台山",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://kochi-tabi.jp/lp/ei-yama-aruki/images/sub_img_godaisan_04.jpg"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5575,
+    "lng": 133.53733,
+    "title": "天神橋",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://blog-imgs-95.fc2.com/t/a/b/tabi1130/2016051913452793f.jpg"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5627,
+    "lng": 133.54091,
+    "title": "グリーンロード",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://newsatcl-pctr.c.yimg.jp/dk/expert-image/yuzuyu/article/02024415/image-1733968474705.jpeg?fill=1&fc=fff&exp=10800"
+  },
+  {
+    "year": 2006,
+    "lat": 33.4961,
+    "lng": 133.56879,
+    "title": "高知市立浦戸小学校",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwRiaXJtH-rpptZMITIwzXic5h371apCHLLw&s"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5461,
+    "lng": 133.48423,
+    "title": "高知病院",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2_rzb1eHp7qZOdFP8-3c-YEClfy_xh7wKpQ&s"
+  },
+  {
+    "year": 2006,
+    "lat": 33.5581,
+    "lng": 133.53412,
+    "title": "高知新阪急ホテル(現在はザ・クラウンパレス　新阪急　高知)",
+    "desc": "ドラマ『税務調査官・窓際太郎の事件簿14』の聖地",
+    "img": "https://www.kochi-u.ac.jp/agro2014/images/hotel.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.5608,
+    "lng": 133.53189,
+    "title": "高知城",
+    "desc": "映画『宇宙人のあいつ』の聖地",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnT2y0TsN6t8FSkKdDSKE112P-fjuH_n9_aw&s"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4144,
+    "lng": 133.36976,
+    "title": "鳴無神社",
+    "desc": "映画『宇宙人のあいつ』の聖地",
+    "img": "https://sta2020.com/wp-content/uploads/2015/07/A7306913.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.4681,
+    "lng": 132.96495,
+    "title": "四国カルスト",
+    "desc": "映画『宇宙人のあいつ』の聖地",
+    "img": "https://hotel-hikyounoyu.co.jp/wp-content/uploads/2021/06/AdobeStock_116362919-1024x682.jpeg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.2116,
+    "lng": 133.00864,
+    "title": "四万十川",
+    "desc": "映画『宇宙人のあいつ』の聖地",
+    "img": "https://okushimanto.jp/wp-content/themes/okushimanto/assets/img/about/river/01.jpg"
+  },
+  {
+    "year": 2023,
+    "lat": 33.0155,
+    "lng": 132.88596,
+    "title": "佐田沈下橋",
+    "desc": "映画『宇宙人のあいつ』の聖地",
+    "img": "https://ppap.kinto-jp.com/spots_images/1013-images/e81d5ab4-f1bb-4ada-b7ad-86dc4a5e08bd.jpg"
+  }
+  // …(以下、必要に応じて他のデータを追加)…
+];
+
+let map;
+let currentYear = 2020;
+let isPlaying = false;
+let playInterval;
+let markers = [];
+
+// DOM要素取得
+const yearSlider     = document.getElementById('yearSlider');
+const yearDisplay    = document.getElementById('yearDisplay');
+const playBtn        = document.getElementById('playBtn');
+const stopBtn        = document.getElementById('stopBtn');
+const modal          = document.getElementById('modal');
+const closeModal     = document.getElementById('closeModal');
+
+// 地図初期化
+function initMap() {
+  map = L.map('map', { center: [33.5597, 133.5311], zoom: 9 });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+  setTimeout(() => map.invalidateSize(), 100);
+}
+
+// マーカー更新
+function updateMap() {
+  // 既存マーカー削除
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+
+  culturalWorks
+    .filter(w => Math.abs(w.year - currentYear) <= 5)
+    .forEach(work => {
+      const icon = L.divIcon({
+        html: '<div class="custom-marker"></div>',
+        iconSize: [25, 25],
+        iconAnchor: [12, 12]
+      });
+      const marker = L.marker([work.lat, work.lng], { icon }).addTo(map);
+      marker.bindTooltip(work.title, {
+        direction: 'top',
+        offset: [0, -10],
+        opacity: 0.9
+      });
+      marker.on('click', () => showModal(work));
+      markers.push(marker);
+    });
+}
+
+// モーダル表示
+function showModal(work) {
+  document.getElementById('modalTitle').textContent       = work.title;
+  document.getElementById('modalYear').textContent        = work.year + '年';
+  document.getElementById('modalImage').src               = work.img;    // ← img プロパティ
+  document.getElementById('modalDescription').textContent = work.desc;   // ← desc プロパティ
+  document.getElementById('modalNavLink').href = 
+    `https://www.google.com/maps/search/?api=1&query=${work.lat},${work.lng}`;
+  modal.style.display = 'block';
+}
+
+// 自動再生開始
+function startAutoPlay() {
+  if (isPlaying) return;
+  isPlaying   = true;
+  playBtn.disabled = true;
+  stopBtn.disabled = false;
+  playInterval = setInterval(() => {
+    currentYear = (currentYear < +yearSlider.max) ? currentYear + 1 : +yearSlider.min;
+    yearSlider.value = currentYear;
+    yearDisplay.textContent = currentYear;
+    updateMap();
+  }, 1000);
+}
+
+// 自動再生停止
+function stopAutoPlay() {
+  isPlaying   = false;
+  playBtn.disabled = false;
+  stopBtn.disabled = true;
+  clearInterval(playInterval);
+}
+
+// イベント登録
+yearSlider.addEventListener('input', () => {
+  currentYear = +yearSlider.value;
+  yearDisplay.textContent = currentYear;
+  updateMap();
+});
+playBtn.addEventListener('click', startAutoPlay);
+stopBtn.addEventListener('click', stopAutoPlay);
+closeModal.addEventListener('click', () => modal.style.display = 'none');
+window.addEventListener('click', e => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+
+// ページ読み込み時に初期化
+document.addEventListener('DOMContentLoaded', () => {
+  initMap();
+  updateMap();
+});
+
+// リサイズ対応
+window.addEventListener('resize', () => {
+  if (map) setTimeout(() => map.invalidateSize(), 100);
+});
